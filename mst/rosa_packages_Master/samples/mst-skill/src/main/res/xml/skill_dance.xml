@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skill name="dance">
+    <call path="/dance-skill/dance">
+        <intent-filter category="speech">
+            <utterance sentence="跳个舞" />
+            <utterance sentence="跳舞" />
+            <utterance sentence="跳舞吧" />
+        </intent-filter>
+    </call>
+</skill>

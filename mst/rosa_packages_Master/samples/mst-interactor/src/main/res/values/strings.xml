@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SampleInteractor</string>
+    <string-array name="interactor_sample_list">
+        <item>语音 Interactor | 模拟语音：跳个舞</item>
+        <item>语音 Interactor | 模拟语音：带我游览优必选</item>
+        <item>语音 Interactor | 模拟语音：唱歌</item>
+        <item>语音 Interactor | 闲聊</item>
+        <item>外部设备远程操 Ineractor | 进入</item>
+        <item>触屏 Launcher Ineractor | 进入</item>
+    </string-array>
+    <string-array name="interactor_sample_method_list">
+        <item>dance</item>
+        <item>sightsee</item>
+        <item>sing</item>
+        <item>talk</item>
+        <item>enterRemoteControlInteractor</item>
+        <item>enterLauncherInteractor</item>
+    </string-array>
+</resources>

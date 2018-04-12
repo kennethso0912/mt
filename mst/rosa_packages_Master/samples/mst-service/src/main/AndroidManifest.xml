@@ -1,0 +1,39 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ubtrobot.master.sample.mstservice">
+
+    <uses-permission android:name="com.ubtrobot.master.permission.MASTER" />
+    <uses-permission android:name="com.ubtrobot.master.permission.MASTER_SYSTEM_SERVICE" />
+
+    <application
+        android:name="SampleServiceApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service
+            android:name=".MotionSystemService"
+            android:exported="true">
+            <meta-data
+                android:name="master.service"
+                android:resource="@xml/service_motion" />
+        </service>
+
+        <service
+            android:name=".LightSystemService"
+            android:exported="true">
+            <meta-data
+                android:name="master.service"
+                android:resource="@xml/service_light" />
+        </service>
+
+        <service
+            android:name=".SpeechSystemService"
+            android:exported="true">
+            <meta-data
+                android:name="master.service"
+                android:resource="@xml/service_speech" />
+        </service>
+    </application>
+</manifest>

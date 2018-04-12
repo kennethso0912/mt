@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skill name="sightsee">
+    <call path="/dance-skill/sightsee">
+        <intent-filter category="speech">
+            <utterance sentence="带我游览优必选" />
+        </intent-filter>
+    </call>
+</skill>

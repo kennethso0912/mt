@@ -1,0 +1,84 @@
+allprojects {
+    repositories {
+        maven {
+            url "${artifactory_url}/${artifactory_rose_release}"
+            credentials {
+                username = artifactory_username
+                password = artifactory_password
+            }
+        }
+
+        maven {
+            url "${artifactory_url}/${artifactory_rose_snapshot}"
+            credentials {
+                username = artifactory_username
+                password = artifactory_password
+            }
+        }
+
+//        maven {
+//            url "${artifactory_url}/${artifactory_virtual_release}"
+//            credentials {
+//                username = artifactory_username
+//                password = artifactory_password
+//            }
+//        }
+
+        jcenter()
+        google()
+    }
+}
+
+ext {
+    versions = [
+            sdkVersion                        : '0.4.0-SNAPSHOT',
+            policySdkVersion                  : '0.4.0-SNAPSHOT',
+
+            protobufParamVersion              : '0.4.0-SNAPSHOT',
+            protobufLiteParamVersion          : '0.4.0-SNAPSHOT',
+            gsonParamVersion                  : '0.4.0-SNAPSHOT',
+
+            masterVersionCode                 : 4000,
+            masterVersionName                 : '0.4.0',
+
+            sampleMasterApplicationVersionCode: 1,
+            sampleMasterApplicationVersionName: '0.0.1',
+
+            sampleMasterServiceVersionCode    : 1,
+            sampleMasterServiceVersionName    : '0.0.1',
+
+            samplePolicyVersionCode           : 1,
+            samplePolicyVersionName           : '0.0.1',
+
+            ulogVersion                       : '0.0.2',
+
+            protobufVersion                   : '3.4.0',
+            protobufLiteVersion               : '3.0.1',
+            gsonVersion                       : '2.8.2',
+    ]
+
+    sdk = [
+            compileSdkVersion: 26,
+            minSdkVersion    : 15,
+            targetSdkVersion : 26,
+    ]
+
+    deps = [
+            ulog            : "com.ubtrobot.ulog:ulog:${versions.ulogVersion}",
+            ulogAndroid     : 'com.ubtrobot.ulog:logger-android:0.0.1',
+
+            protobuf        : "com.google.protobuf:protobuf-java:${versions.protobufVersion}",
+            protobufLite    : "com.google.protobuf:protobuf-lite:${versions.protobufLiteVersion}",
+            gson            : "com.google.code.gson:gson:${versions.gsonVersion}",
+
+            eventbus        : 'org.greenrobot:eventbus:3.1.1',
+
+            appcompat       : 'com.android.support:appcompat-v7:27.0.2',
+            constraintLayout: 'com.android.support.constraint:constraint-layout:1.0.2',
+            recyclerView    : 'com.android.support:recyclerview-v7:27.0.2',
+            design          : 'com.android.support:design:27.0.2',
+            junit           : 'junit:junit:4.12',
+            espressoCore    : 'com.android.support.test.espresso:espresso-core:3.0.1',
+            runner          : 'com.android.support.test:runner:1.0.1'
+    ]
+}

@@ -1,0 +1,103 @@
+apply plugin: 'com.android.library'
+
+android {
+    def sdk = rootProject.ext.sdk
+    compileSdkVersion sdk.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion sdk.minSdkVersion
+        targetSdkVersion sdk.targetSdkVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api project(':component')
+    api project(':transport')
+
+    def deps = rootProject.ext.deps
+    implementation deps.appcompat
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation deps.junit
+    androidTestImplementation deps.espressoCore
+    androidTestImplementation deps.runner
+}
+
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
+task jarSdk(
+        type: Jar,
+        dependsOn: [
+                ':concurrent:assembleRelease',
+                ':commons:assembleRelease',
+                ':transport:assembleRelease',
+                ':component:assembleRelease',
+                ':master-sdk:assembleRelease']) {
+    archiveName = "master.jar"
+
+    exclude('**/BuildConfig.class')
+
+    from(project.zipTree("../concurrent/build/intermediates/bundles/release/classes.jar"))
+    from(project.zipTree("../commons/build/intermediates/bundles/release/classes.jar"))
+    from(project.zipTree("../transport/build/intermediates/bundles/release/classes.jar"))
+    from(project.zipTree("../component/build/intermediates/bundles/release/classes.jar"))
+    from(project.zipTree("build/intermediates/bundles/release/classes.jar"))
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.ubtrobot.master'
+            artifactId 'master'
+            version rootProject.ext.versions.sdkVersion
+
+            artifact("build/libs/master.jar")
+
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+
+                def dependencyNode = dependenciesNode.appendNode('dependency')
+                dependencyNode.appendNode('groupId', 'com.ubtrobot.ulog')
+                dependencyNode.appendNode('artifactId', 'ulog')
+                dependencyNode.appendNode('version', rootProject.ext.versions.ulogVersion)
+            }
+        }
+    }
+}
+
+artifactory {
+    contextUrl = artifactory_url
+
+    publish {
+        repository {
+            username = artifactory_username
+            password = artifactory_password
+
+            if (rootProject.ext.versions.sdkVersion.toUpperCase().endsWith("-SNAPSHOT")) {
+                repoKey = artifactory_rose_snapshot
+            } else {
+                repoKey = artifactory_rose_release
+            }
+        }
+
+        defaults {
+            publications('mavenJava')
+            publishArtifacts = true
+        }
+    }
+
+    resolve {
+        repoKey = 'jcenter'
+    }
+}

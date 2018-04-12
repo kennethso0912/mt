@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service name="policy" description="Master Policy" label="Master Policy">
+    <call path="/component/policies" />
+</service>
