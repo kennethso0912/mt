@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">Master</string>
-    <string name="permission_description">Connect master.</string>
-    <string name="permission_label">Connect master</string>
-</resources>

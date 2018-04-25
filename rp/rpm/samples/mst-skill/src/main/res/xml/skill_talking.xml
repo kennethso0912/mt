@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<skill name="talking">
-    <call path="/talking-skill/talk">
-        <intent-filter category="speech">
-            <utterance sentence="闲聊" />
-        </intent-filter>
-    </call>
-</skill>

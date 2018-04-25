@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<skill name="singing">
-    <call path="/singing-skill/sing">
-        <intent-filter category="speech">
-            <utterance sentence="唱歌" />
-            <utterance sentence="唱一首歌" />
-        </intent-filter>
-    </call>
-</skill>

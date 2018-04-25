@@ -1,5 +1,0 @@
-include ':concurrent', ':commons', ':transport'
-include ':component', ':master-sdk', ':master'
-include ':param-types:protobuf-param', ':param-types:protobuf-lite-param', ':param-types:gson-param'
-include ':policy-commons', ':policy-sdk', 'samples:policy'
-include ':samples:mst-interactor', ':samples:mst-skill', ':samples:mst-service', ':samples:mst-service-param'
